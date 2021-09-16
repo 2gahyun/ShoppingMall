@@ -1,0 +1,18 @@
+.main_banner_area { min-width: 1050px; height: 370px; }
+.banner_item {width: 100%; height: 100%; background-position: center;
+    background-image: url("/assets/images/pc_img_1622450977.jpg");
+}
+.recommand_prod_area > h1 {font-size: 28px; font-weight: 500; text-align: center;
+    margin-top: 80px; margin-bottom: 40px;
+}
+.recommand_wrap {font-size: 0; width: 1050px; margin: 0 auto;}
+.prod_item {width: 249px; font-size: 16px; vertical-align: top; display: inline-block;
+    height: 515px; margin-right: 18px; color: #333; text-decoration: none;}
+.prod_item:last-child {margin-right: 0;}
+.prod_item .img_area img {width: 100%;}
+.prod_item .text_area {margin-top: 10px;}
+.prod_item .text_area .price {margin-top: 10px; font-weight: 700;}
+.prod_item .text_area .discount_rate {color: orangered; margin-right: 3px;}
+.prod_item .text_area .origin_price {margin-top: 10px; font-size: 14px;
+    text-decoration: line-through; color: #999;
+}

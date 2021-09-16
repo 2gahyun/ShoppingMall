@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shopping.mapper.ShoppingCartMapper">
+    <insert id="insertProduct">
+        insert into shopping_cart(sc_mi_seq, sc_pi_seq, sc_count)
+        values(#{sc_mi_seq}, #{sc_pi_seq}, #{sc_count})
+    </insert>
+    <select id="selectCartProductCnt" resultType="java.lang.Integer">
+        select count(*) from shopping_cart 
+        where sc_mi_seq=#{sc_mi_seq} and sc_pi_seq=#{sc_pi_seq}
+    </select>
+    <update id="updateCartProductCnt">
+        update shopping_cart set sc_count = sc_count + #{sc_count}
+        where sc_mi_seq = #{sc_mi_seq} and sc_pi_seq = #{sc_pi_seq}
+    </update>
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from shopping_cart where sc_mi_seq=#{mi_seq}
+    </select>
+    <select id="selectCartProducts" resultType="com.shopping.vo.ProductInfoVO">
+    select * from
+    (
+    	select * from shopping_cart where sc_mi_seq = #{mi_seq}
+    ) a inner join product_info b 
+    on a.sc_pi_seq = b.pi_seq
+    order by a.sc_reg_dt desc;
+    </select>
+    <delete id="deleteCartProduct">
+        delete from shopping_cart
+        where sc_mi_seq = #{mi_seq} and sc_pi_seq = #{pi_seq}
+    </delete>
+    <update id="increaseProductCnt">
+        update shopping_cart set sc_count=sc_count + 1 where sc_mi_seq=#{mi_seq} and sc_pi_seq=#{pi_seq}
+    </update>
+    <update id="decreaseProductCnt">
+        update shopping_cart set sc_count=sc_count - 1 where sc_mi_seq=#{mi_seq} and sc_pi_seq=#{pi_seq}
+    </update>
+    <update id="changeProductCnt">
+        update shopping_cart set sc_count=#{cnt} where sc_mi_seq=#{mi_seq} and sc_pi_seq=#{pi_seq}
+    </update>
+</mapper>
